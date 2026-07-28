@@ -1,14 +1,24 @@
 package com.ruandma.hamburgueria_api.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Produto {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(min = 3, max = 100, message = "Nome deve ter entre 3 e 100 caracteres")
     private String nome;
+
+    @Size(max = 255, message = "Descrição muito longa")
     private String descricao;
+
+    @NotNull(message = "Preço é obrigatório")
+    @Positive(message = "Preço deve ser maior que zero")
     private Double preco;
+
     private Boolean disponivel = true;
 
     public Produto() {}
