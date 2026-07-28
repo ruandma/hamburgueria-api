@@ -57,10 +57,11 @@ Exemplo payload POST:
 ```
 
 Como Rodar Localmente
-
+```bash
 git clone https://github.com/ruandma/hamburgueria-api.git
 cd hamburgueria-api
 ./mvnw spring-boot:run
+```
 
 Acesse:
 
