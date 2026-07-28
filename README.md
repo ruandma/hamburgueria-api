@@ -54,6 +54,7 @@ Exemplo payload POST:
   "preco": 25.90,
   "descricao": "Pao, carne e queijo"
 }
+```
 
 Como Rodar Localmente
 
