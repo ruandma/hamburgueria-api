@@ -1,10 +1,11 @@
-﻿FROM eclipse-temurin:21-jdk-alpine
+﻿FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY .mvn .mvn
-COPY mvnw pom.xml ./
-RUN chmod +x mvnw
-RUN ./mvnw dependency:go-offline -B
+COPY pom.xml .
 COPY src ./src
-RUN ./mvnw clean package -DskipTests -B
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-CMD ["java", "-jar", "target/hamburgueria-api-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]
