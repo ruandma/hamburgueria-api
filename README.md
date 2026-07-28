@@ -2,10 +2,10 @@
 
 API REST para gerenciamento de produtos de uma hamburgueria, desenvolvida com foco em boas práticas, validação e documentação para portfólio Java Júnior.
 
-![Java](https://img.shields.io/badge/Java-21-orange)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
-![License](https://img.shields.io/badge/License-MIT-blue)
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen?style=for-the-badge&logo=springboot)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 ### 🚀 Tecnologias
 - **Java 21**
@@ -38,11 +38,8 @@ API REST para gerenciamento de produtos de uma hamburgueria, desenvolvida com fo
 **Pré-requisitos:** Java 21+
 
 ```bash
-# Clone o repositório
 git clone https://github.com/ruandma/hamburgueria-api.git
 cd hamburgueria-api
-
-# Rode a API (escolha um)
 
 # Linux / macOS / Git Bash
 ./mvnw spring-boot:run
