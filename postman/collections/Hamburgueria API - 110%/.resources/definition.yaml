@@ -1,0 +1,10 @@
+$kind: collection
+name: Hamburgueria API - 110%
+description: Collection completa com JWT + Roles - Ruan de Morais
+variables:
+  - key: baseUrl
+    value: http://localhost:8080
+    disabled: false
+  - key: token
+    secret: true
+    disabled: false

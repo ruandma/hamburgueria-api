@@ -1,0 +1,11 @@
+# Use this workspace to collaborate
+workspace:
+  id: 2b96a36f-a841-4f5c-8614-ff5e72da0cac
+
+localResources:
+  documents:
+    - ../README.md
+
+cloudResources:
+  collections:
+    ../postman/collections/Hamburgueria API - 110%: b86af99d-bc7d-4807-a93f-39b26ec68c7f

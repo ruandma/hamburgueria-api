@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/produtos/1"
+method: PUT
+headers:
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+body:
+  type: text
+  content: |-
+    {
+      "nome": "X-Bacon Duplo",
+      "preco": 32.50,
+      "descricao": "Pão, 2 carnes, bacon e cheddar",
+      "disponivel": true
+    }
+order: 4000
