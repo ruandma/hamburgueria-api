@@ -98,8 +98,6 @@ cd hamburgueria-api
 **Ruan de Morais Arruda** - Brasília/DF - Híbrido
 - GitHub: [@ruandma](https://github.com/ruandma)
 - LinkedIn: [linkedin.com/in/ruandma](https://www.linkedin.com/in/ruandma)
-- CLT: R$ 4.000 Jr / R$ 4.500 Pleno Jr
-- Horário: 02:30 - Projeto 110% entregue
 
 ---
-Feito com ☕ e debug de madrugada - Java 21 + Spring Boot 3.5.4
+- Java 21 + Spring Boot 3.5.4
