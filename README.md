@@ -1,80 +1,87 @@
-# Hamburgueria API 🍔
+```md
+# Hambúrgueria API 🍔
 
-API REST para gerenciamento de produtos de uma hamburgueria, com CRUD completo, validação e testes automatizados.
+API REST para hamburgueria com Java 21, Spring Boot 3.5.4, JWT, DTOs, Paginação e Controle de Roles.
 
-![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen?style=for-the-badge&logo=springboot)
-![Deploy](https://img.shields.io/badge/Deploy-LIVE-success?style=for-the-badge&logo=render)
-![Tests](https://img.shields.io/badge/Tests-5%20passing-brightgreen?style=for-the-badge&logo=junit5)
-![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
+[Java](https://img.shields.io/badge/Java-21-orange)
+[Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen)
+[Deploy](https://img.shields.io/badge/Deploy-Render-blue)
+[Tests](https://img.shields.io/badge/Tests-Passing-success)
+[License](https://img.shields.io/badge/License-MIT-yellow)
 
-### 🔗 API Online
+### 🔗 API Online (Render)
 
 **Base URL:** `https://hamburgueria-api-sln8.onrender.com`
 
-Acesso direto (sem erro Whitelabel):
 - **Swagger UI:** https://hamburgueria-api-sln8.onrender.com/swagger-ui.html
-- **Listar Produtos:** https://hamburgueria-api-sln8.onrender.com/produtos
+- **Listar Produtos (teste rápido):** https://hamburgueria-api-sln8.onrender.com/produtos
 
-> Nota: Plano gratuito no Render hiberna após inatividade. A primeira requisição pode demorar até 50s.
+> Plano gratuito hiberna - primeira requisição pode demorar até 50s.
 
-### Tecnologias
+### 🚀 Tecnologias
 
-- Java 21
-- Spring Boot 3.5.4 (Web, Data JPA, Validation, Security + JWT)
-- PostgreSQL (Render) / H2 (local)
-- SpringDoc OpenAPI / Swagger
-- JUnit 5 + MockMvc + AssertJ
-- Maven / Docker / Render (CI/CD)
+- **Java 21 + Spring Boot 3.5.4** (Web, Data JPA, Validation, Security)
+- **Security:** Spring Security + JWT (jjwt 0.12.5) + Roles (ADMIN/USER)
+- **Banco:** PostgreSQL (Render) / H2 (Dev e Testes)
+- **Boas práticas:** DTOs (Request/Response), Pageable, GlobalExceptionHandler, CORS
+- **Docs:** SpringDoc OpenAPI / Swagger
+- **Build:** Maven Wrapper, Docker, JUnit 5 + MockMvc
 
-### Funcionalidades
+### 🔐 Autenticação
 
-- CRUD completo de Produtos
-- Autenticação com JWT
-- Validação com Bean Validation
-- Tratamento global de erros com @ControllerAdvice
-- Documentação automática com Swagger
-- Testes unitários e de integração
-- Deploy containerizado
-
-### Endpoints
-
-| Método | Endpoint | Descrição |
-| :--- | :--- | :--- |
-| GET | /produtos | Lista todos os produtos |
-| GET | /produtos/{id} | Busca produto por ID |
-| POST | /produtos | Cria um novo produto |
-| PUT | /produtos/{id} | Atualiza um produto |
-| DELETE | /produtos/{id} | Remove um produto |
-
-Exemplo payload POST:
-```json
+1. **Registre um ADMIN:**
+```http
+POST /auth/register
 {
-  "nome": "X-Burguer",
-  "preco": 25.90,
-  "descricao": "Pao, carne e queijo"
+  "username": "admin",
+  "password": "123456",
+  "role": "ROLE_ADMIN"
 }
 ```
 
-Como Rodar Localmente
+2. **Login:**
+```http
+POST /auth/login
+{
+  "username": "admin",
+  "password": "123456"
+}
+-> retorna: eyJhbGciOi...
+```
+
+3. **No Swagger:** clica no cadeado 🔓 > `Bearer SEU_TOKEN`
+
+### 📦 Endpoints
+
+| Método | Endpoint | Acesso | Descrição |
+|--------|----------|--------|-----------|
+| POST | /auth/register | PUBLIC | Cria usuário |
+| POST | /auth/login | PUBLIC | Gera JWT |
+| GET | /produtos?page=0&size=10&sort=nome,asc | USER, ADMIN | Lista paginado |
+| GET | /produtos/{id} | USER, ADMIN | Busca por ID |
+| POST | /produtos | ADMIN | Cria produto |
+| PUT | /produtos/{id} | ADMIN | Atualiza |
+| DELETE | /produtos/{id} | ADMIN | Remove |
+
+### 💻 Rodar Local
+
 ```bash
 git clone https://github.com/ruandma/hamburgueria-api.git
 cd hamburgueria-api
 ./mvnw spring-boot:run
 ```
-
-Acesse:
-
 Swagger: http://localhost:8080/swagger-ui.html
-API: http://localhost:8080/produtos
 
-Testes
+### 🧪 Testes
 
+```bash
 ./mvnw test
+```
 
-Autor
-Ruan de Morais Arruda - Brasília/DF - Híbrido
+### 👨‍💻 Autor
 
-GitHub: @ruandma
-LinkedIn: ruandma
-CLT: R$ 4.000 Jr / R$ 4.500 Pl Jr
+**Ruan de Morais Arruda** - Brasília/DF - Híbrido
+- GitHub: [@ruandma](https://github.com/ruandma)
+- LinkedIn: [linkedin.com/in/ruandma](https://www.linkedin.com/in/ruandma)
+- CLT: R$ 4.000 Jr / R$ 4.500 Pl Jr
+```
