@@ -1,37 +1,48 @@
-```md
 # Hambúrgueria API 🍔
 
-API REST para hamburgueria com Java 21, Spring Boot 3.5.4, JWT, DTOs, Paginação e Controle de Roles.
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen?style=for-the-badge&logo=springboot)
+![Swagger](https://img.shields.io/badge/Swagger-Working-success?style=for-the-badge&logo=swagger&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Auth-blue?style=for-the-badge&logo=jsonwebtokens)
+![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render)
+![Tests](https://img.shields.io/badge/Tests-Passing-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-[Java](https://img.shields.io/badge/Java-21-orange)
-[Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen)
-[Deploy](https://img.shields.io/badge/Deploy-Render-blue)
-[Tests](https://img.shields.io/badge/Tests-Passing-success)
-[License](https://img.shields.io/badge/License-MIT-yellow)
+> API REST 110% - Java 21, Spring Boot 3.5.4, JWT + Roles, Paginação, DTOs, Swagger funcionando.
 
-### 🔗 API Online (Render)
+### 🔗 Demonstração Online
 
-**Base URL:** `https://hamburgueria-api-sln8.onrender.com`
+| Recurso | Link |
+|---|---|
+| **Base URL** | `https://hamburgueria-api-sln8.onrender.com` |
+| **Swagger UI** | [Abrir Swagger](https://hamburgueria-api-sln8.onrender.com/swagger-ui.html) |
+| **Health Check** | [/actuator/health](https://hamburgueria-api-sln8.onrender.com/actuator/health) |
+| **Listar Produtos** | [/produtos?page=0&size=10](https://hamburgueria-api-sln8.onrender.com/produtos) |
 
-- **Swagger UI:** https://hamburgueria-api-sln8.onrender.com/swagger-ui.html
-- **Listar Produtos (teste rápido):** https://hamburgueria-api-sln8.onrender.com/produtos
+> ⚠️ Render gratuito hiberna - primeira requisição pode demorar até 50s.
 
-> Plano gratuito hiberna - primeira requisição pode demorar até 50s.
+### ✅ O que foi corrigido hoje (02:30)
+
+- **Bug #1 - Swagger Failed to load:** SpringDoc 2.6.0 é incompatível com Spring Boot 3.5.4 (`NoSuchMethodError: ControllerAdviceBean.<init>`). Fix: `springdoc-openapi 2.8.8`
+- **Bug #2 - 403 Forbidden:** /v3/api-docs e /swagger-ui/** precisam ser permitAll no SecurityFilterChain
+- **Collection Postman 110%** em `docs/` e `.postman/` com JWT configurado
 
 ### 🚀 Tecnologias
 
-- **Java 21 + Spring Boot 3.5.4** (Web, Data JPA, Validation, Security)
-- **Security:** Spring Security + JWT (jjwt 0.12.5) + Roles (ADMIN/USER)
-- **Banco:** PostgreSQL (Render) / H2 (Dev e Testes)
-- **Boas práticas:** DTOs (Request/Response), Pageable, GlobalExceptionHandler, CORS
-- **Docs:** SpringDoc OpenAPI / Swagger
+- **Core:** Java 21, Spring Boot 3.5.4 (Web, Data JPA, Validation, Security, Actuator)
+- **Security:** Spring Security + JWT jjwt 0.12.5 + Roles `ROLE_ADMIN` / `ROLE_USER`
+- **Banco:** PostgreSQL (Prod - Render) / H2 (Dev e Testes)
+- **Docs:** SpringDoc OpenAPI 2.8.8 - Swagger UI funcionando
+- **Boas práticas:** DTOs Request/Response, Pageable, GlobalExceptionHandler, CORS, Bean Validation
 - **Build:** Maven Wrapper, Docker, JUnit 5 + MockMvc
 
-### 🔐 Autenticação
+### 🔐 Autenticação - Teste em 1 minuto
 
-1. **Registre um ADMIN:**
+**1. Registre um ADMIN:**
 ```http
 POST /auth/register
+Content-Type: application/json
+
 {
   "username": "admin",
   "password": "123456",
@@ -39,29 +50,39 @@ POST /auth/register
 }
 ```
 
-2. **Login:**
+**2. Faça Login:**
 ```http
 POST /auth/login
+
 {
   "username": "admin",
   "password": "123456"
 }
--> retorna: eyJhbGciOi...
+// Retorna: { "token": "eyJhbGciOiJIUzI1NiJ9..." }
 ```
 
-3. **No Swagger:** clica no cadeado 🔓 > `Bearer SEU_TOKEN`
+**3. Use no Swagger:** Clique no cadeado 🔓 no topo > `Bearer SEU_TOKEN`
 
 ### 📦 Endpoints
 
 | Método | Endpoint | Acesso | Descrição |
-|--------|----------|--------|-----------|
-| POST | /auth/register | PUBLIC | Cria usuário |
-| POST | /auth/login | PUBLIC | Gera JWT |
-| GET | /produtos?page=0&size=10&sort=nome,asc | USER, ADMIN | Lista paginado |
-| GET | /produtos/{id} | USER, ADMIN | Busca por ID |
-| POST | /produtos | ADMIN | Cria produto |
-| PUT | /produtos/{id} | ADMIN | Atualiza |
-| DELETE | /produtos/{id} | ADMIN | Remove |
+|---|---|---|---|
+| POST | `/auth/register` | PUBLIC | Cria usuário |
+| POST | `/auth/login` | PUBLIC | Gera JWT |
+| GET | `/produtos?page=0&size=10&sort=nome,asc` | USER, ADMIN | Lista paginado |
+| GET | `/produtos/{id}` | USER, ADMIN | Busca por ID |
+| POST | `/produtos` | ADMIN | Cria produto |
+| PUT | `/produtos/{id}` | ADMIN | Atualiza |
+| DELETE | `/produtos/{id}` | ADMIN | Remove |
+| GET | `/actuator/health` | PUBLIC | Health check |
+
+### 📬 Postman
+
+Importe a collection 110%:
+- `docs/Hamburgueria-API-110.postman_collection.json`
+- `.postman/Hamburgueria-API-110.postman_collection.json`
+
+Já vem com variáveis `{{baseUrl}}` e `{{token}}` + todos os endpoints com Auth.
 
 ### 💻 Rodar Local
 
@@ -69,8 +90,8 @@ POST /auth/login
 git clone https://github.com/ruandma/hamburgueria-api.git
 cd hamburgueria-api
 ./mvnw spring-boot:run
+# Swagger: http://localhost:8080/swagger-ui.html
 ```
-Swagger: http://localhost:8080/swagger-ui.html
 
 ### 🧪 Testes
 
@@ -78,9 +99,13 @@ Swagger: http://localhost:8080/swagger-ui.html
 ./mvnw test
 ```
 
-### 👨‍💻 Autor
+### 👨💻 Autor
 
 **Ruan de Morais Arruda** - Brasília/DF - Híbrido
 - GitHub: [@ruandma](https://github.com/ruandma)
 - LinkedIn: [linkedin.com/in/ruandma](https://www.linkedin.com/in/ruandma)
-- CLT: R$ 4.000 Jr / R$ 4.500 Pl Jr
+- CLT: R$ 4.000 Jr / R$ 4.500 Pleno Jr
+- Horário: 02:30 - Projeto 110% entregue
+
+---
+Feito com ☕ e debug de madrugada - Java 21 + Spring Boot 3.5.4
