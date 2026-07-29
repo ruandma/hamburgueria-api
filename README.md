@@ -21,12 +21,6 @@
 
 > ⚠️ Render gratuito hiberna - primeira requisição pode demorar até 50s.
 
-### ✅ O que foi corrigido hoje (02:30)
-
-- **Bug #1 - Swagger Failed to load:** SpringDoc 2.6.0 é incompatível com Spring Boot 3.5.4 (`NoSuchMethodError: ControllerAdviceBean.<init>`). Fix: `springdoc-openapi 2.8.8`
-- **Bug #2 - 403 Forbidden:** /v3/api-docs e /swagger-ui/** precisam ser permitAll no SecurityFilterChain
-- **Collection Postman 110%** em `docs/` e `.postman/` com JWT configurado
-
 ### 🚀 Tecnologias
 
 - **Core:** Java 21, Spring Boot 3.5.4 (Web, Data JPA, Validation, Security, Actuator)
