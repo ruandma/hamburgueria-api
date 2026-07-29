@@ -84,4 +84,3 @@ Swagger: http://localhost:8080/swagger-ui.html
 - GitHub: [@ruandma](https://github.com/ruandma)
 - LinkedIn: [linkedin.com/in/ruandma](https://www.linkedin.com/in/ruandma)
 - CLT: R$ 4.000 Jr / R$ 4.500 Pl Jr
-```
